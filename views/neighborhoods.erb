@@ -1,0 +1,21 @@
+<h1>Rental Report - Chicago</h1>
+
+<p>
+Planning your next move?
+</p>
+
+<p>
+See neighborhood reviews and quality of life scorecards based on feedback from real residents.
+</p>
+
+<p>
+Find average neighborhood rental rates by unit type, and read resident comments about what it's like to be a renter in each specific neighborhood.
+</p>
+
+<h2>
+See Reviews and Rental Data
+</h2>
+
+<% for neighborhood in @neighborhoods %>
+    <p><a href="/neighborhoods/<%= neighborhood[:id] %>"><%= neighborhood[:name] %></a></p>
+<% end %>

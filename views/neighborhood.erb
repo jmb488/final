@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-sm-9">
+        <h1><%= @neighborhood[:name] %></h1>
+        <p>Population Density: <%= @neighborhood[:density] %> people per square mile</p>
+        <p>Median Household Income: $<%= @neighborhood[:income] %></p>
+        <p>Total Reviews:<%= @review_count %></p>
+        <p>Overall rating:<%= @avg_overall_sat %></p>
+        <p>Availability and affordability:<%= @avg_affordability_sat %></p>
+        <p>Public transit access:<%= @avg_public_transit_sat %></p>
+        <p>Bike and pedestrian friendliness:<%= @avg_bike_walk_sat %></p>
+        <p>Safety from crime:<%= @avg_safety_sat %></p>
+        <p>Quality of things to do:<%= @avg_thing_to_do_sat %></p>
+
+        <p>Average Rental Rates</p>
+        <p>Studio: $<%= @avg_studio_rent %></p>
+        <p>One Bedroom: <%= @avg_1bd_rent %></p>
+        <p>Two Bedroom: <%= @avg_2bd_rent %></p>
+        <p>Three Bedroom: <%= @avg_3bd_rent %></p>
+
+        
+    </div>
+    
+</div>
