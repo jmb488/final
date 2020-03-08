@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-sm-9">
+
+    <!-- Overall Neighborhood Data -->
+
+        <h1><%= @neighborhood[:name] %></h1>
+        <p>Population Density: <%= @neighborhood[:density] %> people per square mile</p>
+        <p>Median Household Income: $<%= @neighborhood[:income] %></p>
+
+        <div class="container mt-5">
+            <iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%= @formatted_lat_long %>&zoom=15" allowfullscreen>
+            </iframe>
+        </div>
+
+        
+        <p>There are no reviews yet! Live in <%= @neighborhood[:name] %>? Help the renter community learn more by leaving a review.</p>
+
+        <p>Be the first to leave a review.</p>
+        <p class="mt-5">
+            <a href="/neighborhoods/<%= @neighborhood[:id] %>/reviews/new" class="btn btn-primary">Add your review!</a>
+        </p>

@@ -1,0 +1,114 @@
+<h1>
+    Add Your Review
+</h1>
+<h2><%= @neighborhood[:name] %></h2>
+
+<p>
+    Please rate your satisfaction with the following five attributes of living in the neighborhood.
+    Give your rating on your experience of the neighborhood as a whole based on being a resident, not just a rating on one specific rental unit.
+</p>
+
+<form action="/neighborhoods/<%= @neighborhood[:id] %>/reviews/create">
+    <p>On a scale of 1 to 5</p>
+    <div class="form-group">
+        <label>Availability and affordability</label>
+        <select class="form-control" name="affordability_sat">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Public transit access</label>
+        <select class="form-control" name="public_transit_sat">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Bike and pedestrian friendliness</label>
+        <select class="form-control" name="bike_walk_sat">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Safety from crime</label>
+        <select class="form-control" name="safety_sat">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Quality of things to do</label>
+        <select class="form-control" name="thing_to_do_sat">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Overall Rating</label>
+        <select class="form-control" name="overall_sat">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+
+
+
+    <div class="form-group">
+        <label>Comments</label>
+        <textarea class="form-control" rows="3" name="comment"></textarea>
+    </div>
+
+    <p>How many bedrooms does your unit have?</p>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="unit_type" value="Studio" checked>
+        <label class="form-check-label">
+            Studio
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="unit_type" value="1bed" checked>
+        <label class="form-check-label">
+            One Bedroom
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="unit_type" value="2bed" checked>
+        <label class="form-check-label">
+            Two Bedroom
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="unit_type" value="3bed" checked>
+        <label class="form-check-label">
+            Three Bedroom
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>What is the total monthly rent of your unit?</label>
+        <input class="form-control" name="monthly_rent">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

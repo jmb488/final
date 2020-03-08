@@ -5,6 +5,8 @@ DB = Sequel.connect(connection_string)                                          
 #######################################################################################
 
 # Database schema - this should reflect your domain model
+# Neighborhood input data comes from: https://statisticalatlas.com/place/Illinois/Chicago/Overview
+
 DB.create_table! :neighborhoods do
     primary_key :id
     String :name
@@ -36,6 +38,9 @@ end
 # Insert initial (seed) data
 neighborhoods_table = DB.from(:neighborhoods)
 reviews_table = DB.from(:reviews)
+users_table = DB.from(:users)
+
+#List of 10 Neighborhoods
 
 neighborhoods_table.insert(name: "Lincoln Park", 
                     city: "Chicago",
@@ -55,10 +60,10 @@ neighborhoods_table.insert(name: "Uptown",
                     income: 37609)
 
 
-neighborhoods_table.insert(name: "West Loop", 
+neighborhoods_table.insert(name: "Streeterville", 
                     city: "Chicago",
-                    density: 21644,
-                    income: 107626)
+                    density: 33871,
+                    income: 99350)
 
 
 neighborhoods_table.insert(name: "Wicker Park", 
@@ -96,18 +101,57 @@ neighborhoods_table.insert(name: "Bridgeport",
                     density: 13199,
                     income: 44968)
 
+#List of Users
 
+users_table.insert(
+                    name:"John D"
+)
+
+users_table.insert(
+                    name:"Joan B"
+)
+
+users_table.insert(
+                    name:"Jeff J"
+)
+
+users_table.insert(
+                    name:"James D"
+)
+
+users_table.insert(
+                    name:"Jordan T"
+)
+
+users_table.insert(
+                    name:"Joe M"
+)
+
+users_table.insert(
+                    name:"Jessica R"
+)
+
+users_table.insert(
+                    name:"Jennifer A"
+)
+
+users_table.insert(
+                    name:"Julia M"
+)
+
+
+# Reviews data
 
 reviews_table.insert(
                     neighborhood_id:1,
-                    user_id:0,
+                    user_id:1,
                     affordability_sat:4,
                     public_transit_sat:4,
                     bike_walk_sat:4,
                     safety_sat:4,
                     thing_to_do_sat:4,
                     overall_sat:4,
-                    comment:"Great!",
+                    comment:"It is a very nice neighborhood that includes DePaul University. It also has a lot of shopping areas that include boutiques and small mom and pop shops which I appreciate. I enjoy Armitage st a lot. There is where you will find many small boutiques and it is a very nice place to look around.",
                     unit_type:"Studio",
                     monthly_rent:1500
 )
@@ -115,14 +159,43 @@ reviews_table.insert(
 
 reviews_table.insert(
                     neighborhood_id:1,
-                    user_id:1,
+                    user_id:2,
                     affordability_sat:5,
                     public_transit_sat:5,
                     bike_walk_sat:5,
                     safety_sat:5,
                     thing_to_do_sat:5,
                     overall_sat:5,
-                    comment:"Great!",
+                    comment:"I love this neighborhood. Every street you see a variety of cultures. The area is very close to the city as well as the lake front.",
                     unit_type:"Studio",
-                    monthly_rent:1300
+                    monthly_rent:1400
 )
+
+reviews_table.insert(
+                    neighborhood_id:1,
+                    user_id:3,
+                    affordability_sat:3,
+                    public_transit_sat:4,
+                    bike_walk_sat:5,
+                    safety_sat:4,
+                    thing_to_do_sat:5,
+                    overall_sat:4,
+                    comment:"Lincoln Park is in the midst of a demographic adjustment. Although the $1M+ townhomes w/rooftop decks sit right next to senior buildings, it is still well protected, safe to walk your dog at night, non-stressful type of neighborhood where you can breathe.",
+                    unit_type:"1bed",
+                    monthly_rent:2100
+)
+
+reviews_table.insert(
+                    neighborhood_id:1,
+                    user_id:4,
+                    affordability_sat:3,
+                    public_transit_sat:4,
+                    bike_walk_sat:5,
+                    safety_sat:5,
+                    thing_to_do_sat:4,
+                    overall_sat:4,
+                    comment:"I am at the perfect distance of big city and residential living with urban vibes. Local restaurants and boutiques are bountiful, and there is always some cozy cafe or bar popping up. Nightlife exists, but it is never so loud or dangerous (or barf covered).",
+                    unit_type:"1bed",
+                    monthly_rent:2000
+)
+

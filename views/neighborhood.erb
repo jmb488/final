@@ -1,23 +1,111 @@
 <div class="row">
     <div class="col-sm-9">
-        <h1><%= @neighborhood[:name] %></h1>
+
+    <!-- Overall Neighborhood Data -->
+
+        <h1><%= @neighborhood[:name] %>, <%= @neighborhood[:city] %></h1>
         <p>Population Density: <%= @neighborhood[:density] %> people per square mile</p>
         <p>Median Household Income: $<%= @neighborhood[:income] %></p>
-        <p>Total Reviews:<%= @review_count %></p>
-        <p>Overall rating:<%= @avg_overall_sat %></p>
-        <p>Availability and affordability:<%= @avg_affordability_sat %></p>
-        <p>Public transit access:<%= @avg_public_transit_sat %></p>
-        <p>Bike and pedestrian friendliness:<%= @avg_bike_walk_sat %></p>
-        <p>Safety from crime:<%= @avg_safety_sat %></p>
-        <p>Quality of things to do:<%= @avg_thing_to_do_sat %></p>
+        
 
-        <p>Average Rental Rates</p>
-        <p>Studio: $<%= @avg_studio_rent %></p>
-        <p>One Bedroom: <%= @avg_1bd_rent %></p>
-        <p>Two Bedroom: <%= @avg_2bd_rent %></p>
-        <p>Three Bedroom: <%= @avg_3bd_rent %></p>
+        <div class="container mt-5">
+            <iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%= @formatted_lat_long %>&zoom=15" allowfullscreen>
+            </iframe>
+        </div>
 
+
+        <p>Overall rating: 
+
+        <% Integer @rounded_down = @avg_overall_sat.floor %>
+        <% Integer @remainder = @avg_overall_sat - @rounded_down %>
+        Rounded down: <%= @rounded_down %>
+        Remainder: <%= @remainder %>
+        <% @counter = 0 %>
+        <% while @counter < @rounded_down %>
+            <i class="fas fa-star"></i>
+            <% @counter = @counter+1 %>
+        <% end %>
+        <% if @remainder >= 0.5 %>
+            <i class="fas fa-star-half-alt"></i>
+        <% end %>
+        </p>
+        
+
+        <h2>Average Satisfaction Scores</h2>
+        <p>Availability and affordability:<%= @avg_affordability_sat.round(2) %></p>
+        <p>Public transit access:<%= @avg_public_transit_sat.round(2) %></p>
+        <p>Bike and pedestrian friendliness:<%= @avg_bike_walk_sat.round(2) %></p>
+        <p>Safety from crime:<%= @avg_safety_sat.round(2) %></p>
+        <p>Quality of things to do:<%= @avg_thing_to_do_sat.round(2) %></p>
+
+        <h2>Average Rental Rates</h2>
+        <p>
+            Studio: 
+            <% if @avg_studio_rent == nil %>
+                No Data
+            <% else %>
+                $<%= @avg_studio_rent.round(0) %>
+            <% end %>
+        </p>
+        <p>
+            One Bedroom: 
+            <% if @avg_1bd_rent == nil %>
+                No Data
+            <% else %>
+                $<%= @avg_1bd_rent.round(0) %>
+            <% end %>
+        </p>
+        <p>
+            Two Bedroom: 
+            <% if @avg_2bd_rent == nil %>
+                No Data
+            <% else %>
+                $<%= @avg_2bd_rent.round(0) %>
+            <% end %>
+        </p>
+        <p>
+            Three Bedroom: 
+            <% if @avg_3bd_rent == nil %>
+                No Data
+            <% else %>
+                $<%= @avg_3bd_rent.round(0) %>
+            <% end %>
+        </p>
+
+    
+        <!-- Individual Reviews -->
+        <h2>Total Reviews (<%= @review_count %>)</h2>
+        <% for review in @reviews %>
+            <% @counter = 0 %>
+            <% while @counter < review[:overall_sat] %>
+                <i class="fas fa-star"></i>
+                <% @counter = @counter+1 %>
+            <% end %>
+
+
+            <div>
+            <%= @users_table.where(id: review[:user_id]).to_a[0][:name] %>
+            <p><%= review[:comment] %></p>
+
+            <p>Availability and affordability: <%= review[:affordability_sat] %></p>
+            <p>Public transit access: <%= review[:public_transit_sat] %></p>
+            <p>Bike and pedestrian friendliness: <%= review[:bike_walk_sat] %></p>
+            <p>Safety from crime: <%= review[:safety_sat] %></p>
+            <p>Quality of things to do: <%= review[:thing_to_do_sat] %></p>
+            </div>
+           
+        
+    
+        <% end %>
         
     </div>
+
+    <p class="mt-5">
+            <a href="/neighborhoods/<%= @neighborhood[:id] %>/reviews/new" class="btn btn-primary">Add your review!</a>
+    </p>
     
 </div>
