@@ -15,7 +15,9 @@ before { puts; puts "--------------- NEW REQUEST ---------------"; puts }       
 after { puts; }                                                                       #
 #######################################################################################
 
-
+account_sid = "ACa1920a096cb2e686c44e88a2f481a87d"
+auth_token = "fd4b2778998945abf8b94c0470a0b8b4"
+client = Twilio::REST::Client.new(account_sid, auth_token)
 
 neighborhoods_table = DB.from(:neighborhoods)
 reviews_table = DB.from(:reviews)
@@ -94,6 +96,14 @@ get "/neighborhoods/:id/reviews/create" do
                     unit_type: params["unit_type"],
                     monthly_rent: params["monthly_rent"],
     )
+
+    @location_name = @neighborhood[:name] + ", " + @neighborhood[:city]
+    client.messages.create(
+        from: "+12064018863", 
+        to: "+12404723172",
+        body: "New Review uploaded for #{@location_name}: #{params["comment"]}"
+    )
+
     view "create_review"
 end
 
