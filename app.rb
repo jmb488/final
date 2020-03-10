@@ -16,7 +16,7 @@ after { puts; }                                                                 
 #######################################################################################
 
 account_sid = "ACa1920a096cb2e686c44e88a2f481a87d"
-auth_token = "4b6a948b3aebd45fbd9d9d0228261934"
+auth_token = "f9c3fff9eba2c6f9a4458d3f6e4c0aef"
 client = Twilio::REST::Client.new(account_sid, auth_token)
 
 neighborhoods_table = DB.from(:neighborhoods)
