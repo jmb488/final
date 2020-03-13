@@ -15,8 +15,9 @@ before { puts; puts "--------------- NEW REQUEST ---------------"; puts }       
 after { puts; }                                                                       #
 #######################################################################################
 
-account_sid = "ACa1920a096cb2e686c44e88a2f481a87d"
-auth_token = "f9c3fff9eba2c6f9a4458d3f6e4c0aef"
+account_sid = ENV["TWILIO_ACCOUNT_SID"]
+auth_token = ENV["TWILIO_AUTH_TOKEN"]
+
 client = Twilio::REST::Client.new(account_sid, auth_token)
 
 neighborhoods_table = DB.from(:neighborhoods)
