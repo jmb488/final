@@ -17,6 +17,7 @@ after { puts; }                                                                 
 
 account_sid = ENV["TWILIO_ACCOUNT_SID"]
 auth_token = ENV["TWILIO_AUTH_TOKEN"]
+map_key = ENV["GOOGLE_MAPS_KEY"]
 
 client = Twilio::REST::Client.new(account_sid, auth_token)
 
@@ -67,6 +68,8 @@ get "/neighborhoods/:id" do
     @avg_3bd_rent = reviews_table.where(neighborhood_id: @neighborhood[:id], unit_type: "3bed").avg(:monthly_rent)
 
     @users_table = users_table
+
+    @map_key = map_key
     
     #If there are reviews, show all data. If there are no reviews show a page inviting the user to be the first to review.
     if @review_count >= 1
